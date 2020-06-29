@@ -29,7 +29,7 @@ def run_ark():
     utility.GAME = 'ark'
     start_game('com.hypergryph.arknights/com.u8.sdk.U8UnityContext')
     while True:
-        ret = ark.login.login(user = "17620702210", passwd = "A91547838")  # input your password here
+        ret = ark.login.login(user = "test", passwd = "test")  # input your password here
         if ret != 0:
             loger.log("Arknights Login Failed, quiting...")
             break
