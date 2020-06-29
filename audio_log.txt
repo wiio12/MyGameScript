@@ -1,2 +1,0 @@
-waveOutOpen error: 2
-waveOutOpen error: 2

@@ -1,34 +1,68 @@
-import time, os
+import time, os, sys
 import random
 
 import loger, utility
 from utility import *
 from screen import match_until
 import fgo.login
+import ark.login, ark.fight
 
+print("cur:" + os.getcwd())
 
 def run_fgo():
+    """fgo part"""
     loger.log("starting fgo...")
     utility.GAME = 'fgo'
-    os.system('adb shell am start -n com.bilibili.fatego/jp.delightworks.Fgo.player.AndroidPlugin')
+    start_game('com.bilibili.fatego/jp.delightworks.Fgo.player.AndroidPlugin')
     while True:
         ret = fgo.login.login()
         if ret:
             break
-    os.system('adb shell am force-stop com.bilibili.fatego')
+    stop_game('com.bilibili.fatego')
     loger.log("ending fgo...\n")
 
 def run_ark():
+    """
+    arknights part
+    """
     loger.log("starting arknights...")
-    
+    utility.GAME = 'ark'
+    start_game('com.hypergryph.arknights/com.u8.sdk.U8UnityContext')
+    while True:
+        ret = ark.login.login(user = "17620702210", passwd = "A91547838")  # input your password here
+        if ret != 0:
+            loger.log("Arknights Login Failed, quiting...")
+            break
+        break
+
+    stop_game('com.hypergryph.arknights')
     loger.log("ending arknights...\n")
 
+def run_ark_light():
+    """
+    arkninghts, 只是自动刷单个图
+    """
+    utility.GAME = 'ark'
+    loger.log("start fight")
+    while True:
+        ret = ark.fight.fight(use_san = 1, use_stone = 0)
+        if ret != 0:
+            loger.log("Arknights Fight Failed...")
+            break
+        break
+    loger.log("end fight")
+
 if __name__ == "__main__":
-    x = match_until(['home'])
-    if x == 'home':
-        run_fgo()
-
-
+    if sys.argv[1] == '-fgo':
+        s = match_until(['home'])
+        if s == 'home':
+            run_fgo()
+        else:
+            loger.log('Error matching [home]')
+    
+    elif sys.argv[1] == '-arklight':
+        run_ark_light()
+    
     else:
-        loger.log('Error matching [home]')
+        loger.log("system parameter error") 
         

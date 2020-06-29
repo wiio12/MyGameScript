@@ -1,0 +1,7 @@
+screenshot.png
+
+/log/
+/.vscode/
+/__pycache__/
+/fgo/__pycache__/
+/ark/__pycache__/

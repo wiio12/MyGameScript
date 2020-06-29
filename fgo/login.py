@@ -8,7 +8,7 @@ import loger
 def login():
     count = 0
     while True:
-        s = match_until(['update', 'main', 'cross', 'notification'])
+        s = match_until(['update', 'main', 'cross', 'notification', 'maintenance'])
         if s == 'update':
             loger.log("Need update..")
             tap(840, 557)
@@ -18,6 +18,9 @@ def login():
             tap(1181, 405)
         elif s == 'main':
             loger.log("Login successful")
+            break
+        elif s == 'maintenance':
+            loger.log("Server under maintenance")
             break
         else:
             count += 1

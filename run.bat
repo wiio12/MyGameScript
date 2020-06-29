@@ -1,4 +1,4 @@
-@echo on
+@echo off
 echo "Opening Mumu..."
 
 set myvar=1
@@ -13,7 +13,9 @@ timeout /t 30
 echo "Mumu opened"
 adb connect 127.0.0.1:7555
 CALL conda.bat activate base
-python "D:\Work\Code\fgo\auto\main.py"
+cd /D D:\Work\Code\fgo\auto\
+echo %cd%
+python ".\main.py" -fgo
 
 echo "Jobs done, closing Mumu..."
 timeout /t 10
