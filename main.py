@@ -1,13 +1,13 @@
 import time, os, sys
 import random
 
-import loger, utility
-from utility import *
-from screen import match_until
+import utility.utility as utility
+import utility.loger as loger
+from utility.utility import *
+from utility.screen import match_until
 import fgo.login
 import ark.login, ark.fight
 
-print("cur:" + os.getcwd())
 
 def run_fgo():
     """fgo part"""
@@ -45,7 +45,7 @@ def run_ark_light():
     utility.GAME = 'ark'
     loger.log("start fight")
     while True:
-        ret = ark.fight.fight(use_san = 1, use_stone = 0)
+        ret = ark.fight.fight(use_san = 1, use_stone = 0)  # 设置使用理智液和石头的个数
         if ret != 0:
             loger.log("Arknights Fight Failed...")
             break

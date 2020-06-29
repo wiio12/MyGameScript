@@ -1,4 +1,6 @@
 screenshot.png
+__pycache__/
+*.py[cod]
 
 /log/
 /.vscode/

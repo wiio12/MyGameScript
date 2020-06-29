@@ -1,8 +1,8 @@
 import time
 
-from screen import match_until
-from utility import *
-import loger
+from utility.screen import match_until
+from utility.utility import *
+import utility.loger as loger
 
 
 def login():

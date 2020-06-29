@@ -1,7 +1,7 @@
-from loger import log
-from utility import *
-from screen import match_until
-from screen import match_until_sift
+from utility.loger import log
+from utility.utility import *
+from utility.screen import match_until
+from utility.screen import match_until_sift
 
 def fight(use_san, use_stone):
     count = 0

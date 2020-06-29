@@ -1,9 +1,9 @@
 import time, os, subprocess
 import aircv as ac
-import loger 
 
-from utility import *
 
+from utility.utility import *
+import utility.loger as loger
 
 def match(features_path, cof = 0.9):
     confidence = 0.0
@@ -22,7 +22,7 @@ def match(features_path, cof = 0.9):
     else:
         return True, answer, confidence
 
-def match_shift(features_path, cof = 100):
+def match_shift(features_path, cof = 90):
     cofa = 0.0
     cofb = 0.0
     answer = ""
