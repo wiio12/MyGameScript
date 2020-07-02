@@ -11,6 +11,8 @@ timeout /t 30
 
 :1
 echo "Mumu opened"
+adb kill-server
+adb devices
 adb connect 127.0.0.1:7555
 CALL conda.bat activate base
 cd /D D:\Work\Code\fgo\auto\

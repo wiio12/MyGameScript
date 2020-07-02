@@ -14,6 +14,7 @@ def match(features_path, cof = 0.9):
     for f in features_path:
         imsch = ac.imread(f)
         find = ac.find_template(imsrc, imsch)
+        print(get_feature(f), find)
         if find and find["confidence"] > confidence:
             confidence = find['confidence']
             answer = get_feature(f)
@@ -43,7 +44,7 @@ def match_shift(features_path, cof = 90):
     else:
         return True, answer, point
 
-def match_until_sift(features, cof = 0.9, rand_tap = True):
+def match_until_sift(features, cof = 90, rand_tap = True):
     features_path = get_features_path(features)
     count = 0
     while True:
@@ -56,8 +57,8 @@ def match_until_sift(features, cof = 0.9, rand_tap = True):
         if ret:
             break
         if rand_tap:
-            tap(random.randint(200, 500), 
-                random.randint(200, 500))
+            tap(random.randint(530, 730), 
+                random.randint(260, 380))
         
     return find, point
 
@@ -74,8 +75,8 @@ def match_until(features, cof = 0.9, rand_tap = True):
         if ret:
             break
         if rand_tap:
-            tap(random.randint(200, 500), 
-                random.randint(200, 500))
+            tap(random.randint(530, 730), 
+                random.randint(260, 380))
         
     return find
         

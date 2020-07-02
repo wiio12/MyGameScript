@@ -6,7 +6,7 @@ from utility.screen import match_until_sift
 def login(user = "", passwd = ""):
     count = 0
     while True:
-        s = match_until(['loading', 'login', 'cross', 'main', 'login_1'])
+        s = match_until([ 'login', 'cross', 'main', 'login_1'])
         if s == "loading":
             continue
         elif s == 'login_1':

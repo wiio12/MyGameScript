@@ -3,17 +3,27 @@ from utility.utility import *
 from utility.screen import match_until
 from utility.screen import match_until_sift
 
-def fight(use_san, use_stone):
+def fight(use_san = 0, use_stone = 0):
     count = 0
     fight_count = 0
+    fight_flag = False
     while True:
-        s, p = match_until_sift(['start_operation_2', 'start_operation', 'fighting', 'operation_end', 'use_san', 'use_stone'])
-        if s == 'start_operation' or s == 'start_operation_2' or s == 'operation_end':
-            tap(p[0], p[1])
-            if s == 'operation_end':
+        s = match_until(['start_operation_2', 'start_operation', 'fighting', 'operation_end', 'use_san', 'use_stone'])
+        print(s)
+        if s is not None:
+            count = 0
+        if s == 'start_operation':
+            tap(1153, 652)
+        if s == 'start_operation_2':
+            tap(1104, 493)
+            fight_flag = True
+        if s == 'operation_end':
+            tap(1104, 493)
+            if fight_flag:
                 fight_count += 1
                 log("Finish finght: %d" % (fight_count))
-                wait(10)
+                fight_flag = False
+            wait(3)
         elif s == 'fighting':
             wait()
             continue
@@ -34,6 +44,7 @@ def fight(use_san, use_stone):
                 log("Sanit run out")
                 return 0
         else:
+            print('count: ', count)
             count += 1
             if count > 30:
                 log("fight time out")

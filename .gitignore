@@ -1,7 +1,7 @@
 screenshot.png
 __pycache__/
 *.py[cod]
-
+audio_log.txt
 /log/
 /.vscode/
 /__pycache__/

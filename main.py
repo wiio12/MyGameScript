@@ -5,7 +5,7 @@ import utility.utility as utility
 import utility.loger as loger
 from utility.utility import *
 from utility.screen import match_until
-import fgo.login
+import fgo.login, fgo.fight
 import ark.login, ark.fight
 
 
@@ -29,7 +29,7 @@ def run_ark():
     utility.GAME = 'ark'
     start_game('com.hypergryph.arknights/com.u8.sdk.U8UnityContext')
     while True:
-        ret = ark.login.login(user = "test", passwd = "test")  # input your password here
+        ret = ark.login.login(user = "17620702210", passwd = "A91547838")  # input your password here
         if ret != 0:
             loger.log("Arknights Login Failed, quiting...")
             break
@@ -45,14 +45,26 @@ def run_ark_light():
     utility.GAME = 'ark'
     loger.log("start fight")
     while True:
-        ret = ark.fight.fight(use_san = 1, use_stone = 0)  # 设置使用理智液和石头的个数
+        ret = ark.fight.fight(use_san = 0)  # 设置使用理智液和石头的个数
         if ret != 0:
             loger.log("Arknights Fight Failed...")
             break
         break
     loger.log("end fight")
 
+def run_fog_fight():
+    utility.GAME = 'fgo'
+    loger.log("start fight")
+    while True:
+        ret = fgo.fight.fight(use_gold = 0)
+        if ret != 0:
+            loger.log("FGO Fight Failed...")
+            break
+        break
+    loger.log("end fight")
+
 if __name__ == "__main__":
+    connect_adb()
     if sys.argv[1] == '-fgo':
         s = match_until(['home'])
         if s == 'home':
@@ -60,8 +72,18 @@ if __name__ == "__main__":
         else:
             loger.log('Error matching [home]')
     
+    elif sys.argv[1] == '-ark':
+        s = match_until(['home'])
+        if s == 'home':
+            run_ark()
+        else:
+            loger.log('Error matching [home]')
+    
     elif sys.argv[1] == '-arklight':
         run_ark_light()
+    
+    elif sys.argv[1] == '-fgofight':
+        run_fog_fight()
     
     else:
         loger.log("system parameter error") 

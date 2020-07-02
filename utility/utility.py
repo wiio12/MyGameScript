@@ -21,6 +21,9 @@ def wait(t = 1.0):
     t = t + random.random()
     time.sleep(t)
 
+def connect_adb():
+    os.system('adb connect 127.0.0.1:7555')
+
 def start_game(game):
     os.system(f'adb shell am start -n {game}')
 
