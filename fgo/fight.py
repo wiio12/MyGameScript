@@ -7,14 +7,18 @@ from utility.loger import log
 POINTS_NORMAL = [(135, 508), (386, 508), (656, 508),(900,508),(1160, 508)]
 POINTS_BIG = [(386, 245), (656, 245), (900, 245)]
 
-def fight(use_white = 0, use_gold = 0, use_stone = 0):
+def fight(fight_time = 100, use_white = 0, use_gold = 0, use_stone = 0):
     fight_count = 0
     while True:
-        s = match_until(['fight_1', 'assis_choice', 'start_fight', 'attack', 'attack_2','next', 'ap_out', 'story'])
+        if fight_count > fight_time:
+            return 0
+        s = match_until(['fight_1', 'assis_choice', 'start_fight', 'attack', 'attack_2','next', 'ap_out', 'story', 'data_update', 'data_update_2'])
         print(s)
         if s == 'story':
             tap(1192, 36, w = 1)
             tap(826, 556)
+        if s == 'data_update' or s == 'data_update_2':
+            tap(437, 559)
         if s == 'fight_1':
             fight_count += 1
             log("Fight %d" % fight_count)

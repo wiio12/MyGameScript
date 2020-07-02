@@ -5,7 +5,7 @@ import utility.utility as utility
 import utility.loger as loger
 from utility.utility import *
 from utility.screen import match_until
-import fgo.login, fgo.fight
+import fgo.login, fgo.fight, fgo.daliy
 import ark.login, ark.fight
 
 
@@ -16,8 +16,12 @@ def run_fgo():
     start_game('com.bilibili.fatego/jp.delightworks.Fgo.player.AndroidPlugin')
     while True:
         ret = fgo.login.login()
-        if ret:
+        if ret != 0:
             break
+        ret = fgo.daliy.daliy_free_draw()
+        if ret != 0:
+            break
+        break
     stop_game('com.bilibili.fatego')
     loger.log("ending fgo...\n")
 
@@ -29,7 +33,7 @@ def run_ark():
     utility.GAME = 'ark'
     start_game('com.hypergryph.arknights/com.u8.sdk.U8UnityContext')
     while True:
-        ret = ark.login.login(user = "17620702210", passwd = "A91547838")  # input your password here
+        ret = ark.login.login(user = "test", passwd = "test")  # input your password here
         if ret != 0:
             loger.log("Arknights Login Failed, quiting...")
             break
@@ -56,6 +60,7 @@ def run_fog_fight():
     utility.GAME = 'fgo'
     loger.log("start fight")
     while True:
+        #ret = fgo.daliy.daliy_free_draw()
         ret = fgo.fight.fight(use_gold = 0)
         if ret != 0:
             loger.log("FGO Fight Failed...")
