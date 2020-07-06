@@ -13,8 +13,8 @@ def fight(fight_time=100, use_stone=0):
             tap(p[0], p[1] + 50)
             flag = True
         elif s == 'start_fight':
-            tap(1114, 607, w=0)
-            tap(1114, 607, w=0)
+            tap(1114, 607, w=1)
+            tap(1114, 607, w=1)
             if flag:
                 fight_count += 1
         elif s == 'next':
