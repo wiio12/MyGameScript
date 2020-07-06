@@ -20,6 +20,7 @@
   ```
    可以启动adb
 2. 安装 [`python3`](https://www.python.org/downloads/release/python-383/) 和 [`pip`](https://pypi.org/project/pip/)
+
 3. 安装依赖库
   ``` 
     $ pip install -r requirements.txt
