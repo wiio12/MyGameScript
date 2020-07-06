@@ -1,5 +1,6 @@
 screenshot.png
 abandon.txt
+config.json
 __pycache__/
 *.py[cod]
 audio_log.txt

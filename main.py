@@ -4,10 +4,9 @@ import json
 
 import utility.utility as utility
 import utility.loger as loger
-
-from utility.screen import match_until
 import fgo.control
 import ark.control
+import pcr.control
 
 
 if __name__ == "__main__":
@@ -25,6 +24,8 @@ if __name__ == "__main__":
         ark.control.run_ark(user=config['arknight_username'], passwd=config['arknight_password'])
     elif sys.argv[1] == '-arkfight':
         ark.control.run_ark_light()
+    elif sys.argv[1] == '-pcrfight':
+        pcr.control.run_pcr_fight()
     else:
         loger.log("system parameter error")
     

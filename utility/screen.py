@@ -16,7 +16,7 @@ def match(features_path, cof=0.9):
     for f in features_path:
         imsch = ac.imread(f)
         find = ac.find_template(imsrc, imsch)
-        # print(get_feature(f), find)
+        print(get_feature(f), find)
         if find and find["confidence"] > confidence:
             confidence = find['confidence']
             answer = get_feature(f)
