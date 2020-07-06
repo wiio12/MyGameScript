@@ -37,12 +37,12 @@ def fight_event(fight_time=15, use_stone=0):
         if fight_count > fight_time:
             return 0
 
-def fight_dungeon(fight_time=15, use_stone=0):
+def fight_dungeon(fight_time=10, use_stone=0):
     while True:
         flag = False
         fight_count = 0
-        s, p = match_until(["next_fight_d", 'start_fight_d', 'start_fight_2', 'next', 'shop', 'next_1', 'close', 'ap_out','ok_d'], require_coor=True, cof=0.85)
-        if s == 'next_fight_d':
+        s, p = match_until(["next_fight_d", 'next_fight_d_2', 'start_fight_d', 'start_fight_2', 'next', 'shop', 'next_1', 'close', 'ok_d'], require_coor=True, cof=0.85)
+        if s == 'next_fight_d' or s == 'next_fight_d_2':
             tap(p[0], p[1])
             flag = True
         elif s == 'start_fight_d' or s == 'start_fight_2':
@@ -58,14 +58,6 @@ def fight_dungeon(fight_time=15, use_stone=0):
             tap(1107, 671, w=4)
         elif s == 'close' or s == 'ok_d':
             tap(p[0], p[1])
-        elif s == 'ap_out':
-            if use_stone > 0:
-                tap(786, 494, w=1)
-                tap(786, 494, w=1)
-                use_stone -= 1
-            else:
-                log("体力完了")
-                return 0
 
         if fight_count > fight_time:
             return 0

@@ -24,8 +24,10 @@ if __name__ == "__main__":
         ark.control.run_ark(user=config['arknight_username'], passwd=config['arknight_password'])
     elif sys.argv[1] == '-arkfight':
         ark.control.run_ark_light()
-    elif sys.argv[1] == '-pcrfight':
-        pcr.control.run_pcr_fight()
+    elif sys.argv[1] == '-pcrfightevent':
+        pcr.control.run_pcr_fight_even()
+    elif sys.argv[1] == '-pcrfightdungeon':
+        pcr.control.run_pcr_fight_dungeon()
     else:
         loger.log("system parameter error")
     
